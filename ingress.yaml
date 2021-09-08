@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  namespace: ingress-nginx
+spec:
+  rules:
+  - host: www.examplein.com
+  - http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: myservice1
+            port:
+              number: 6000
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: myservice2
+            port:
+              number: 6000
+
